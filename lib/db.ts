@@ -8,7 +8,7 @@ export function db() {
   if (!client) {
     const url = process.env.DATABASE_URL;
     if (!url) throw new Error("DATABASE_URL is not configured");
-    client = postgres(url, { max: 5, prepare: false });
+    client = postgres(url, { max: 5, prepare: false, ssl: "require" });
   }
   return client;
 }

@@ -8,7 +8,8 @@ export async function GET() {
     await ensureSchema();
     await db()`SELECT 1`;
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("healthcheck database connection failed", error);
     return NextResponse.json({ ok: false }, { status: 503 });
   }
 }
